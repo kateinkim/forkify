@@ -511,7 +511,7 @@ const controlSearchResults = async function () {
     if (!query) return;
     await model.loadSearchResults(query);
 
-    _resultsView.default.render(model.getSearchResultsPage());
+    _resultsView.default.render(model.getSearchResultsPage(4));
 
     _paginationView.default.render(model.state.search);
   } catch (err) {
@@ -519,10 +519,8 @@ const controlSearchResults = async function () {
   }
 };
 
-const controlPagination = function (goToPage) {
-  _resultsView.default.render(model.getSearchResultsPage(goToPage));
-
-  _paginationView.default.render(model.state.search);
+const controlPagination = function () {
+  console.log('pagination controller');
 };
 
 const init = function () {
@@ -6749,10 +6747,10 @@ class PaginationView extends _View.default {
 
   addClickHandler(handler) {
     this._parentElement.addEventListener('click', function (e) {
-      const btn = e.target.closest('.btn--inline');
+      const btn = e.target.closet('.btn--inline');
       if (!btn) return;
       const goToPage = +btn.dataset.goto;
-      handler(goToPage);
+      handler();
     });
   }
 

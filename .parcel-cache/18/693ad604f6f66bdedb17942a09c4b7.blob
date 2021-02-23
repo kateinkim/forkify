@@ -520,9 +520,7 @@ const controlSearchResults = async function () {
 };
 
 const controlPagination = function (goToPage) {
-  _resultsView.default.render(model.getSearchResultsPage(goToPage));
-
-  _paginationView.default.render(model.state.search);
+  console.log(goToPage);
 };
 
 const init = function () {
