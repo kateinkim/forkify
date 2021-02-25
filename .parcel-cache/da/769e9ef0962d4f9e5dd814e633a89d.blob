@@ -496,11 +496,11 @@ const controlRecipes = async function () {
 
     _resultsView.default.update(model.getSearchResultsPage());
 
-    _bookmarksView.default.update(model.state.bookmarks);
-
     await model.loadRecipe(id);
 
     _recipeView.default.render(model.state.recipe);
+
+    _bookmarksView.default.update(model.state.bookmarks);
   } catch (err) {
     _recipeView.default.renderError();
 

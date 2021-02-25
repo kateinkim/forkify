@@ -545,13 +545,7 @@ const controlAddBookmark = function () {
   _bookmarksView.default.render(model.state.bookmarks);
 };
 
-const controlBookmarks = function () {
-  _bookmarksView.default.render(model.state.bookmarks);
-};
-
 const init = function () {
-  _bookmarksView.default.addRenderHandler(controlBookmarks);
-
   _recipeView.default.addRenderHandler(controlRecipes);
 
   _recipeView.default.addUpdateServingsHandler(controlServings);
@@ -5190,14 +5184,9 @@ const updateServings = function (newServings) {
 
 exports.updateServings = updateServings;
 
-const persistBookmarks = function () {
-  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
-};
-
 const addBookmark = function (recipe) {
   state.bookmarks.push(recipe);
   if (recipe.id === state.recipe.id) state.recipe.bookmarked = true;
-  persistBookmarks();
 };
 
 exports.addBookmark = addBookmark;
@@ -5206,17 +5195,9 @@ const deleteBookmark = function (id) {
   const index = state.bookmarks.findIndex(el => el.id === id);
   state.bookmarks.splice(index, 1);
   if (id === state.recipe.id) state.recipe.bookmarked = false;
-  persistBookmarks();
 };
 
 exports.deleteBookmark = deleteBookmark;
-
-const init = function () {
-  const storage = localStorage.getItem('bookmarks');
-  if (storage) state.bookmarks = JSON.parse(storage);
-};
-
-init();
 },{"./config.js":"09212d541c5c40ff2bd93475a904f8de","./helpers.js":"0e8dcd8a4e1c61cf18f78e1c2563655d","regenerator-runtime":"e155e0d3930b156f86c48e8d05522b16"}],"09212d541c5c40ff2bd93475a904f8de":[function(require,module,exports) {
 "use strict";
 
@@ -6801,6 +6782,8 @@ var _View = _interopRequireDefault(require("./View.js"));
 
 var _previewView = _interopRequireDefault(require("./previewView"));
 
+var _icons = _interopRequireDefault(require("url:../../img/icons.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -6825,7 +6808,7 @@ class ResultsView extends _View.default {
 var _default = new ResultsView();
 
 exports.default = _default;
-},{"./View.js":"61b7a1b097e16436be3d54c2f1828c73","./previewView":"e4d6583325a8b6c9380670c4f233bf07"}],"e4d6583325a8b6c9380670c4f233bf07":[function(require,module,exports) {
+},{"./View.js":"61b7a1b097e16436be3d54c2f1828c73","url:../../img/icons.svg":"6daae04755050f720551b259b47b5ca0","./previewView":"e4d6583325a8b6c9380670c4f233bf07"}],"e4d6583325a8b6c9380670c4f233bf07":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6963,6 +6946,8 @@ var _View = _interopRequireDefault(require("./View.js"));
 
 var _previewView = _interopRequireDefault(require("./previewView.js"));
 
+var _icons = _interopRequireDefault(require("url:../../img/icons.svg"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -6976,10 +6961,6 @@ class BookmarksView extends _View.default {
     _defineProperty(this, "_errorMessage", 'No bookmarks yet. Find a great recipe and add it!');
 
     _defineProperty(this, "_message", '');
-
-    _defineProperty(this, "addRenderHandler", function (handler) {
-      window.addEventListener('load', handler);
-    });
   }
 
   _generateMarkup() {
@@ -6991,6 +6972,6 @@ class BookmarksView extends _View.default {
 var _default = new BookmarksView();
 
 exports.default = _default;
-},{"./View.js":"61b7a1b097e16436be3d54c2f1828c73","./previewView.js":"e4d6583325a8b6c9380670c4f233bf07"}]},{},["3dcd35881dbdea8f055cf32127435244","16a80d7876fa384c5d59d103667fad81","175e469a7ea7db1c8c0744d04372621f"], null)
+},{"./View.js":"61b7a1b097e16436be3d54c2f1828c73","url:../../img/icons.svg":"6daae04755050f720551b259b47b5ca0","./previewView.js":"e4d6583325a8b6c9380670c4f233bf07"}]},{},["3dcd35881dbdea8f055cf32127435244","16a80d7876fa384c5d59d103667fad81","175e469a7ea7db1c8c0744d04372621f"], null)
 
 //# sourceMappingURL=controller.ec299678.js.map

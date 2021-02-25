@@ -545,13 +545,7 @@ const controlAddBookmark = function () {
   _bookmarksView.default.render(model.state.bookmarks);
 };
 
-const controlBookmarks = function () {
-  _bookmarksView.default.render(model.state.bookmarks);
-};
-
 const init = function () {
-  _bookmarksView.default.addRenderHandler(controlBookmarks);
-
   _recipeView.default.addRenderHandler(controlRecipes);
 
   _recipeView.default.addUpdateServingsHandler(controlServings);
@@ -5210,13 +5204,6 @@ const deleteBookmark = function (id) {
 };
 
 exports.deleteBookmark = deleteBookmark;
-
-const init = function () {
-  const storage = localStorage.getItem('bookmarks');
-  if (storage) state.bookmarks = JSON.parse(storage);
-};
-
-init();
 },{"./config.js":"09212d541c5c40ff2bd93475a904f8de","./helpers.js":"0e8dcd8a4e1c61cf18f78e1c2563655d","regenerator-runtime":"e155e0d3930b156f86c48e8d05522b16"}],"09212d541c5c40ff2bd93475a904f8de":[function(require,module,exports) {
 "use strict";
 
@@ -6976,10 +6963,6 @@ class BookmarksView extends _View.default {
     _defineProperty(this, "_errorMessage", 'No bookmarks yet. Find a great recipe and add it!');
 
     _defineProperty(this, "_message", '');
-
-    _defineProperty(this, "addRenderHandler", function (handler) {
-      window.addEventListener('load', handler);
-    });
   }
 
   _generateMarkup() {
